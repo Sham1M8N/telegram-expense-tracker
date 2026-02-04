@@ -383,22 +383,16 @@ def save_expense_to_db(user_id, amount, category, db_name='expenses.db'):
     conn.commit()
     conn.close()
     return True
-# Start the fake web server
-keep_alive()
-print("Web server started for Render!")
 
-# Run the bot
-print("Bot is running...")
-application.run_polling()
 # --- MAIN EXECUTION ---
 if __name__ == '__main__':
-    # Initialize Database
+    # 1. Initialize Database
     init_db()
     
-    # Build the Bot
+    # 2. Build the Bot (THIS IS THE MISSING LINE)
     application = ApplicationBuilder().token(BOT_TOKEN).build()
     
-    # Add Handlers
+    # 3. Add Handlers
     application.add_handler(CommandHandler('start', start))
     application.add_handler(CommandHandler('add', add_expense))
     application.add_handler(CommandHandler('list', list_expenses))
@@ -409,6 +403,10 @@ if __name__ == '__main__':
     application.add_handler(CommandHandler('delete_id', delete_specific_expense)) 
     application.add_handler(CommandHandler('setbudget', set_budget)) 
     
-    # Run
+    # 4. Start the Fake Web Server (for Render)
+    keep_alive()
+    print("Web server started for Render!")
+    
+    # 5. Run the Bot
     print("Bot is running...")
     application.run_polling()
