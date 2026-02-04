@@ -7,6 +7,7 @@ import csv
 import io
 import os
 from dotenv import load_dotenv
+from keep_alive import keep_alive
 from datetime import datetime, time, timedelta, timezone
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
@@ -382,7 +383,13 @@ def save_expense_to_db(user_id, amount, category, db_name='expenses.db'):
     conn.commit()
     conn.close()
     return True
+# Start the fake web server
+keep_alive()
+print("Web server started for Render!")
 
+# Run the bot
+print("Bot is running...")
+application.run_polling()
 # --- MAIN EXECUTION ---
 if __name__ == '__main__':
     # Initialize Database
