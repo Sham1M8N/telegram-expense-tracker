@@ -389,7 +389,7 @@ if __name__ == '__main__':
     # 1. Initialize Database
     init_db()
     
-    # 2. Build the Bot (THIS IS THE MISSING LINE)
+    # 2. Build the Bot (THIS WAS MISSING)
     application = ApplicationBuilder().token(BOT_TOKEN).build()
     
     # 3. Add Handlers
@@ -403,7 +403,7 @@ if __name__ == '__main__':
     application.add_handler(CommandHandler('delete_id', delete_specific_expense)) 
     application.add_handler(CommandHandler('setbudget', set_budget)) 
     
-    # 4. Start the Fake Web Server (for Render)
+    # 4. Start the Fake Web Server
     keep_alive()
     print("Web server started for Render!")
     
